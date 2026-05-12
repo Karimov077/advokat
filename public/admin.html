@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advokat CRM - Admin Panel</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="dashboard">
+        <div class="sidebar">
+            <div class="logo">
+                <h2>⚖️ Nigora Law</h2>
+                <p>CRM Dashboard</p>
+            </div>
+            <nav>
+                <button onclick="showSection('dashboard')" class="nav-btn active">📊 Dashboard</button>
+                <button onclick="showSection('clients')" class="nav-btn">👥 Mijozlar</button>
+                <button onclick="showSection('cases')" class="nav-btn">⚖️ Ishlar</button>
+                <button onclick="showSection('payments')" class="nav-btn">💰 To'lovlar</button>
+                <button onclick="showSection('meetings')" class="nav-btn">📅 Uchrashuvlar</button>
+                <button onclick="showSection('applications')" class="nav-btn">📝 Arizalar</button>
+                <button onclick="showSection('documents')" class="nav-btn">📄 Hujjatlar</button>
+            </nav>
+            <div class="logout-btn">
+                <button onclick="logout()" style="background: #dc2626;">🚪 Chiqish</button>
+            </div>
+        </div>
+        
+        <div class="main-content">
+            <div class="header">
+                <h1 id="section-title">Dashboard</h1>
+                <div class="user-info">
+                    <span>👨‍⚖️ KARIMOV</span>
+                </div>
+            </div>
+            
+            <div id="dashboard-section" class="section active">
+                <div class="stats-grid" id="stats-grid">
+                    <!-- Stats cards will be inserted here -->
+                </div>
+                
+                <div class="charts">
+                    <canvas id="income-chart"></canvas>
+                </div>
+            </div>
+            
+            <div id="clients-section" class="section">
+                <div class="section-header">
+                    <h2>Mijozlar ro'yxati</h2>
+                    <button onclick="showAddClientModal()" class="btn-primary">➕ Yangi mijoz</button>
+                </div>
+                <div class="table-container">
+                    <table id="clients-table">
+                        <thead>
+                            <tr><th>ID</th><th>F.I.SH</th><th>Telefon</th><th>Pasport</th><th>Manzil</th><th>Amallar</th></tr>
+                        </thead>
+                        <tbody id="clients-list"></tbody>
+                    </table>
+                </div>
+            </div>
+            
+            <div id="cases-section" class="section">
+                <div class="section-header">
+                    <h2>Ishlar</h2>
+                    <select id="client-select-cases" onchange="loadCases()">
+                        <option value="">Mijoz tanlang</option>
+                    </select>
+                </div>
+                <div id="cases-list"></div>
+            </div>
+            
+            <div id="payments-section" class="section">
+                <h2>To'lovlar</h2>
+                <select id="client-select-payments" onchange="loadPayments()">
+                    <option value="">Mijoz tanlang</option>
+                </select>
+                <div id="payments-list"></div>
+            </div>
+            
+            <div id="meetings-section" class="section">
+                <h2>Uchrashuvlar</h2>
+                <div id="meetings-list"></div>
+            </div>
+            
+            <div id="applications-section" class="section">
+                <h2>Arizalar</h2>
+                <div id="applications-list"></div>
+            </div>
+            
+            <div id="documents-section" class="section">
+                <h2>Hujjatlar</h2>
+                <div class="templates">
+                    <h3>Template'lar</h3>
+                    <button onclick="generateDocument('davo')" class="btn-secondary">Da'vo arizasi</button>
+                    <button onclick="generateDocument('shartnoma')" class="btn-secondary">Shartnoma</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Modals -->
+    <div id="client-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('client-modal')">&times;</span>
+            <h2>Yangi mijoz qo'shish</h2>
+            <form id="client-form">
+                <input type="text" id="fullname" placeholder="F.I.SH" required>
+                <input type="tel" id="phone" placeholder="Telefon" required>
+                <input type="text" id="passport" placeholder="Pasport seriya/raqam">
+                <input type="text" id="address" placeholder="Manzil">
+                <button type="submit" class="btn-primary">Saqlash</button>
+            </form>
+        </div>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html>
