@@ -4,11 +4,17 @@
   "version": "1.0.0",
   "description": "Advokatlar uchun CRM + Case Manager",
   "main": "index.js",
+
+  "engines": {
+    "node": "20.x"
+  },
+
   "scripts": {
     "start": "node index.js",
     "bot": "node bot.js",
     "dev": "nodemon index.js"
   },
+
   "dependencies": {
     "bcrypt": "^5.1.1",
     "body-parser": "^1.20.2",
@@ -21,6 +27,7 @@
     "nodemailer": "^6.9.7",
     "sqlite3": "^5.1.6"
   },
+
   "devDependencies": {
     "nodemon": "^3.0.1"
   }
